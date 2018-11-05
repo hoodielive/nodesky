@@ -3,6 +3,9 @@ const express = require('express');
 const app = express(); 
 const Joi = require('joi');  
 
+/** MIDDLEWARE **/
+app.use(express.json());
+
 /** VARIABLES **/
 const courses = [
   { id: 1, name: 'Course 1'},
@@ -35,6 +38,10 @@ app.post('/api/courses', (req, res) => {
   };
 
   const result = Joi.validate(req.body, schema);
+  if (result.error) {
+    res.status(400).send(result.error);
+    return;
+  }
 
   const course = {
     id: courses.length + 1, 
