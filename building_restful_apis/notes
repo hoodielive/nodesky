@@ -1,0 +1,20 @@
+RESTful Services / APIs / Microservices 
+
+Client speaks to server via http protocol. 
+
+Client requests services from server (Representational State Transfer).
+
+Crud Operations: 
+  :GET - get data
+  :POST - create data
+  :PUT - update data
+  :DELETE  - get rid of data
+
+http:// <domain> / api / collection (resource, endpoint)  
+https:// <domain> / api / collection (resource, endpoint)
+
+GET /api/customers :: req =>  [ { id: 1, name: ''}, { id: 2, name: ''}] :: res 
+GET /api/customers/1 => would just return the object 
+PUT /api/customers/1 {name: 'Lawrence'} 
+POST /api/customers 
+DELETE /api/customers/1 
