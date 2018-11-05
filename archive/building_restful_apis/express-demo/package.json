@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "eslint-config-airbnb": "^17.1.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "joi": "^14.0.4"
   },
   "devDependencies": {
     "eslint": "^5.8.0",
