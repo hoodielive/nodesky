@@ -27,20 +27,13 @@ app.get('/api/courses/:id', (req, res) => {
 /** POST **/ 
 app.post('/api/courses', (req, res) => {
 
-  /** if (!req.body.name || req.body.name.length < 3 ) {
-    // 400 Bad Request 
-    res.status(400).send('Sorry, you must provide a name greater than 3 characters.')
-   };**/
-
   /** JOI Validation **/
-  const schema = {
-  name: Joi.string().min(3).required()
-  };
+  const { error } = validateCourse(req.body);  
 
-  const result = Joi.validate(req.body, schema);
-  if (result.error) {
-    res.status(400).send(result.error);
-    return;
+  /** if Invalid return 400 - Bad Request **/ 
+  if (error) {
+    res.status(400).send(result.error.details[0].message); 
+    return; 
   }
 
   const course = {
@@ -51,6 +44,36 @@ app.post('/api/courses', (req, res) => {
   res.send(course);
 }); 
 
+app.put('/api/courses/:id', (req, res) => {
+ 
+  /** Look up course **/
+  const course = courses.find(c => c.find === parseInt(req.params.id)); 
+  
+  /** If not existing, 404 Validate course **/ 
+  if (!course) res.status(404).send('The course with the given ID was NOT found.')
+
+  const { error } = validateCourse(req.body);  
+
+  /** if Invalid return 400 - Bad Request **/ 
+  if (error) {
+    res.status(400).send(result.error.details[0].message); 
+    return; 
+  }
+  
+  /** Update course **/
+  course.name = req.body.name; 
+
+  /** Return the updated course to client **/
+  res.send(course);
+});
+
+function validateCourse(course) {
+  const schema = {
+    name: Joi.string().min(3).required()  
+  }
+
+  return Joi.validate(course, schema); 
+}
 /** SERVER STUFF **/
 const port = process.env.PORT || 3000; 
 app.listen(port, () => console.log(`Listening on port ${port}...`)); 
