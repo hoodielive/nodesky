@@ -42,6 +42,7 @@ app.post('/api/courses', (req, res) => {
   res.send(course);
 }); 
 
+/** PUT/UPDATE **/
 app.put('/api/courses/:id', (req, res) => {
   const course = courses.find(c => c.id === parseInt(req.params.id)); 
   if (!course) return res.sendStatus(404).send("Sorry, but the request ID that you specified does NOT exist.")
@@ -54,6 +55,15 @@ app.put('/api/courses/:id', (req, res) => {
   res.send(course);
 
 });
+
+/** DELETE **/
+app.delete('/api/courses/:id', (req, res) => {
+  const course = courses.find(c => c.id === parseInt(req.params.id)); 
+  if (!course) return res.sendStatus(404).send('The course id specified does NOT exist.')
+  const index = courses.indexOf(course); 
+  courses.splice(index, 1); 
+  res.send(course);
+})
 
 function validateCourse(course) {
   const schema = {
