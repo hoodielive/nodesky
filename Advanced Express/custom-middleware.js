@@ -10,7 +10,8 @@ const logger = require('./middleware');
 console.log(`app: ${app.get('env')}`);
 **/
 console.log('Application Name: ' + config.get('name'));
-console.log('Mail Server' + config.get('mail.host'));
+console.log('Mail Server: ' + config.get('mail.host'));
+console.log('Mail Password ' + config.get('mail.password'));
 
 if (app.get('env') === 'development') {
   app.use(morgan('tiny'));
