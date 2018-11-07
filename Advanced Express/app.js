@@ -1,54 +1,42 @@
-const startupDebugger = require('debug')('app:startup');
-const dbDebugger = require('debug')('app:db');
-const config = require('config');
-const express = require('express');
+const startupDebugger = require("debug")("app:startup");
+const dbDebugger = require("debug")("app:db");
+const config = require("config");
+const express = require("express");
 const app = express();
-const Joi = require('joi');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const logger = require('./middleware');
-const artRoutes = require('./routes')
-
+const Joi = require("joi");
+const helmet = require("helmet");
+const morgan = require("morgan");
+const logger = require("./middleware/logger");
+const home = require("./routes/home"); 
+const artRoutes = require("./routes/routes");
 
 /** console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 console.log(`app: ${app.get('env')}`);
 **/
-console.log('Application Name: ' + config.get('name'));
-console.log('Mail Server: ' + config.get('mail.host'));
-console.log('Mail Password ' + config.get('mail.password'));
+console.log("Application Name: " + config.get("name"));
+console.log("Mail Server: " + config.get("mail.host"));
+console.log("Mail Password " + config.get("mail.password"));
 
-if (app.get('env') === 'development') {
-  app.use(morgan('tiny'));
-  startupDebugger('Morgan enabled...');
+if (app.get("env") === "development") {
+  app.use(morgan("tiny"));
+  startupDebugger("Morgan enabled...");
 }
 
 /** Database Work **/
-dbDebugger('Connected to the database...');
+dbDebugger("Connected to the database...");
 
-app.set('view engine', 'pug');
-app.set('views', './views');
+app.set("view engine", "pug");
+app.set("views", "./views");
 
 app.use(express.json());
-app.use(logger);
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(helmet());
-app.use(morgan('tiny'));
-app.use('/api/artists', artRoutes)
-
-/** ARTIST CONTAINER **/
-const artists = [
-  { id: 1, name: '+ma' }, 
-  { id: 2, name: 'hajino' }, 
-  { id: 3, name: 'yclept insan' }, 
-  { id: 4, name: 'CYGN' }, 
-  { id: 5, name: 'tzyurash' }
-];
-
-app.get('/', (req, res) => {
-  res.render('index', { title: 'My Express App', message: 'Hellorrrrr!!!'});
-});
+app.use(morgan("tiny"));
+app.use("/api/artists", artRoutes);
+app.use("/", home); 
+app.use(logger);
 
 /** SERVER STUFF **/
-const port = process.env.PORT || 3000; 
-app.listen(port, () => console.log(`Listening on port ${port}...`)); 
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Listening on port ${port}...`));

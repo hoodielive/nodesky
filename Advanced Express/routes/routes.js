@@ -1,5 +1,15 @@
 const express = require('express'); 
 const router = express.Router(); 
+const Joi = require('joi')
+
+/** ARTIST CONTAINER **/
+const artists = [
+  { id: 1, name: '+ma' }, 
+  { id: 2, name: 'hajino' }, 
+  { id: 3, name: 'yclept insan' }, 
+  { id: 4, name: 'CYGN' }, 
+  { id: 5, name: 'tzyurash' }
+];
 
 router.get('/', (req, res) => {
   res.send(artists); 
