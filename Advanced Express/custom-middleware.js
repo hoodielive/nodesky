@@ -1,3 +1,4 @@
+const config = require('config');
 const express = require('express');
 const app = express();
 const Joi = require('joi');
@@ -8,6 +9,8 @@ const logger = require('./middleware');
 /** console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 console.log(`app: ${app.get('env')}`);
 **/
+console.log('Application Name: ' + config.get('name'));
+console.log('Mail Server' + config.get('mail.host'));
 
 if (app.get('env') === 'development') {
   app.use(morgan('tiny'));
