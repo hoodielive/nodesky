@@ -1,21 +1,36 @@
-console.log('Before');
-
-getUser(1, (user) => {
- // console.log('User', user)
-  getRepositories(user.gitHubUsername, (repos) => {
-    console.log('Repos', repos);
-  });
-}); 
-
-
-console.log('After');
-
 /** 
  * There are 3 patterns to deal with a longer running operation
  * callbacks
  * promises
  * async/await
 **/
+
+console.log('Before');
+
+getUser(1, getRepositories);
+
+/** How the above Async code would look as Synchronous 
+ * console.log(before)
+ * const user = getUser(1); 
+ * const repos = getRepositories(user.gitHubUsername); 
+ * const commits = getCommits(repos[0]); 
+ * console.log('After'); 
+**/ 
+
+console.log('After');
+
+function getRepositories(user) {
+  getRepositories(user.gitHubUsername, getCommits);
+}
+
+function getCommits(repos) {
+  getCommits(repo, displayCommits);
+  console.log(repos)
+};
+
+function displayCommits(commits) {
+  console.log(commits)
+};
 
 function getUser(id, callback) {
   setTimeout(() => {
