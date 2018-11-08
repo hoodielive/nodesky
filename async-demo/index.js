@@ -1,6 +1,13 @@
 console.log('Before');
-const user = getUser(1); 
-console.log(user)
+
+getUser(1, (user) => {
+ // console.log('User', user)
+  getRepositories(user.gitHubUsername, (repos) => {
+    console.log('Repos', repos);
+  });
+}); 
+
+
 console.log('After');
 
 /** 
@@ -10,11 +17,16 @@ console.log('After');
  * async/await
 **/
 
-function getUser(id) {
+function getUser(id, callback) {
   setTimeout(() => {
     console.log('Reading a user from a database....');  
-    return { id: id, gitHubUsername: 'lawrence'};
+    callback({ id: id, gitHubUsername: 'lawrence'});
   }, 2000); 
-
-  return 1; 
 }
+
+function getRepositories(username, callback) {
+  setTimeout(() => {
+    console.log('Connecting to the Github API')
+    callback(['repo1', 'repo2', 'repo3']);
+  }, 2000);
+}; 
