@@ -49,6 +49,7 @@ router.delete('/:id', (req, res) => {
   artists.splice(index, 1); 
   res.send(artist)
 })
+
 function validateArtist(artist) {
   const schema = {
     name: Joi.string().min(3).required()
