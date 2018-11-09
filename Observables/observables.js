@@ -7,6 +7,8 @@ class Observable {
   }
 
   static timeout(time) {
+    // fix this
+
     return new Observable(subscribe(observer) => {
       const handle = setTimeout(() => {
         observer.next();  
