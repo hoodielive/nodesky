@@ -13,6 +13,7 @@ getUser(1)
       const commits = await getCommits(repos[0]);
       console.log(commits);
     }
+    displayCommits();
 
     console.log('After');
 
