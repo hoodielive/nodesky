@@ -1,0 +1,9 @@
+/** By the way: Schema types are:
+ * String
+ * Number
+ * Date
+ * Buffer
+ * Boolean
+ * ObjectID
+ * Array
+**/ 
