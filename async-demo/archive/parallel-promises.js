@@ -5,7 +5,6 @@ const p1 = new Promise((resolve, reject) => {
   }, 2000);
 });
 
-
 const p2 = new Promise((resolve) => {
   setTimeout(() => {
     console.log('Async operation 2...');
