@@ -33,8 +33,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(helmet());
 app.use(morgan("tiny"));
-app.use("/api/artists", artRoutes);
 app.use("/", home); 
+app.use("/api/artists", artRoutes);
 app.use(logger);
 
 /** SERVER STUFF **/
