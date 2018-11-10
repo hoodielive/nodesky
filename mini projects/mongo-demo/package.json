@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "eslint": "^5.8.0",
-    "mongoose": "^5.0.1"
+    "mongoose": "^5.3.11"
   }
 }

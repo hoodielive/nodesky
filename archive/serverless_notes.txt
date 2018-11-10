@@ -1,0 +1,98 @@
+Serverless applications with AWS Lambda
+
+Event Source -> Function -> Services 
+
+Event Sources:
+  - Changes in data state
+  - Requests to endpoints 
+  - Changes in resource state 
+
+Function: 
+  - Node.js
+  - Python 
+  - Java
+  - C#
+  - Go 
+
+Services:
+  
+
+What does serverless mean? 
+  - No server management (no maintaining the OS, hardware)::you work on an abstracted layer above this
+  - Flexible Scaling (no need to think about memory, cpus, etc)::you just think about the efficiency of your code to service requests..
+  - Automated High Availability (don't worry about availability zones, thats not a concern for you)
+  - No idle capacity (only pay for exact amount of compute time to run your code, saves tons of money)
+
+
+AWS Management Console Limitations: 
+  - IDE features
+  - Local build automation
+  - Environment Management 
+  - Version Control 
+  - Collaboration 
+
+
+Developer Environment: 
+  - Write/edit code -> IDE
+  - Source control (git, subversion)
+  - Test locally before deploying :: deploying to Dev Accounts and Prod env 
+    1. Build
+    2. Zip code
+    3. Upload to S3
+    4. Create/update role 
+    5. Call CreateFunction 
+    6. Map event source 
+
+Full stack deployments:
+
+AWS Gateway -> Lambda -> Dynamo 
+
+DEV:
+  - Build 
+  - Zip code 
+  - Upload to S3
+  - Create/update role 
+  - Create function 
+  - Create REST API
+  - Create resource 
+  - Create method 
+  - Update integration 
+  - Create Table 
+
+Infrastructure as Code  
+  - AWS CloudFormation 
+    - Define a template in JSON or YAML 
+    - All those peices are defined in this format and then pushed to CloudFormation 
+    - Read RAW AWS CloudFormation template 
+    - AWS Serverless Apllication Model (SAM) Template 
+      - AWS SAM Cli
+      - AWS CloudFormation transform 
+
+      AWS SAML Cli 
+
+      function code -> Zip -> deployment packages -> Amazon S3 bucket 
+
+      template.yaml -> update code URI -> template.out.yaml -> S3
+
+      # template.yaml 
+      MyFunction:
+          Type: AWS::Serverless::Function 
+          Properties: 
+              CodeUri: ./path-to-code 
+
+      # template.out.yaml
+      MyFunction:
+          Type: AWS::Serverless::Function 
+          Properties: 
+              CodeUri: https://s3-url 
+
+      AWS SAM Transform:
+      AWS SAM CLI -> deploy -> stack 
+      template.out.yaml or template.json -> AWS CloudFormation -> stack 
+      
+      AWS::Serverless::Function 
+      AWS::Lambda::Function 
+      AWS::IAM:ROle
+
+      $sam package 
+      $sam deploy
