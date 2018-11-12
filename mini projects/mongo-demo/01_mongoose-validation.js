@@ -21,6 +21,7 @@ async function getCourses() {
     .sort('-name')
     .select('name author');
 } 
+
 async function run() {
   const courses = await getCourses(); 
   console.log(courses);
