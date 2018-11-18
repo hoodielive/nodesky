@@ -4,4 +4,12 @@ Routing
   Multi router support 
   Static & Dynamic configuration 
   Support for all HTTP verbs 
-  Order based
+  Order based -> order DOES matter!
+    app.get('/', (req, res) => res.json({ first: true }));  // this would run first
+    app.get('*', (req, res) => res.json({ ok: true })); 
+
+  Use different routers for different APIs 
+
+  /api - router 
+  /admin - router
+  /analytics - router 
