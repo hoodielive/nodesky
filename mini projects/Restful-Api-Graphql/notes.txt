@@ -1,0 +1,7 @@
+Routing 
+  Flexible pattern matching 
+  Handles parameters 
+  Multi router support 
+  Static & Dynamic configuration 
+  Support for all HTTP verbs 
+  Order based
