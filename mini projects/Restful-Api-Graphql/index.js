@@ -6,7 +6,7 @@ const apiRouter = express.Router();
 
 apiRouter.get('/', (req, res) => res.json({ apiRouter: true }))
 
-app.use('/', apiRouter); 
+app.use('/api', apiRouter); 
 
 app.get('/', (req, res) => {
   res.json({ first: true }); 
