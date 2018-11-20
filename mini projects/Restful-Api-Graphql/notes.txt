@@ -1,0 +1,28 @@
+Routing 
+  Flexible pattern matching 
+  Handles parameters 
+  Multi router support 
+  Static & Dynamic configuration 
+  Support for all HTTP verbs 
+  Order based -> order DOES matter!
+    app.get('/', (req, res) => res.json({ first: true }));  // this would run first
+    app.get('*', (req, res) => res.json({ ok: true })); 
+
+  Use different routers for different APIs 
+
+  /api - router 
+  /admin - router
+  /analytics - router 
+
+Like: 
+
+const app = express()
+
+const apiRouter = express.Router() 
+
+apiRouter.get('/', (req, res) => res.json({ api: true })); 
+api.get('/', (req, res) => res.json({ first: true })); 
+
+The GET request will be responded to with first: true because though you created an api.get, the app doesn't 
+know about it. You have to do:
+  app.use('/', apiRouter); in order for it to be used. 
