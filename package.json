@@ -17,8 +17,7 @@
     "url": "https://github.com/hoodielive/nodesky/issues"
   },
   "homepage": "https://github.com/hoodielive/nodesky#readme",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "express": "^4.16.4"
   }
